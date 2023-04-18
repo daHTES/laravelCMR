@@ -82,7 +82,8 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ru',
+    'locales' => ['ru', 'en'],
 
     /*
     |--------------------------------------------------------------------------
@@ -194,7 +195,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \App\Providers\ModularProvider::class
+        \App\Providers\ModularProvider::class,
+
+        //Подключение сервиса провайдера
+        \App\Services\Localization\LocalizationServiceProvider::class,
+        Lavary\Menu\ServiceProvider::class,
 
     ],
 
@@ -211,6 +216,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'menu' => Lavary\Menu\Facade::class,
     ])->toArray(),
 
 ];

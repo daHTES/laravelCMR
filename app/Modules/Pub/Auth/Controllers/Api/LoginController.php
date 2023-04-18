@@ -9,6 +9,10 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class LoginController
+ * @package App\Modules\Pub\Auth\Controllers\Api
+ */
 class LoginController extends Controller{
 
     public function login(LoginRequest $request){
