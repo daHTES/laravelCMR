@@ -17,9 +17,27 @@ class RolePolicy{
 
     }
 
-    public function view(){
+    public function view(User $user){
 
-        return true;
+        return $user->userPermissionSet(['Root_Admin', 'ROLES_ACCESS']);
+
+    }
+
+    public function create(User $user){
+
+        return $user->userPermissionSet(['Root_Admin', 'ROLES_ACCESS']);
+
+    }
+
+    public function edit(User $user){
+
+        return $user->userPermissionSet(['Root_Admin', 'ROLES_ACCESS']);
+
+    }
+
+    public function delete(User $user){
+
+        return $user->userPermissionSet(['Root_Admin', 'ROLES_ACCESS']);
 
     }
 }

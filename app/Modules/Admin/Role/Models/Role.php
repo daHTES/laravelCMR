@@ -24,10 +24,35 @@ class Role extends Model{
     }
 
     public function savePermissions($perms){
+
         if(!empty($perms)){
             $this->perms()->sync($perms);
         }else{
             $this->perms()->detach();
         }
+    }
+
+    public function hasPermission($alias, $require = false){
+
+        if(is_array($alias)){
+            foreach ($alias as $permissionAlias){
+                $hasPermission = $this->hasPermission($permissionAlias);
+                if($hasPermission && $require){
+                    return true;
+                }
+                else if(!$hasPermission && $require){
+                    return false;
+                }
+            }
+        }
+        else{
+            foreach ($this->perms as $permission){
+                if($permission->alias == $alias){
+                    return true;
+                }
+            }
+        }
+        return $require;
+
     }
 }

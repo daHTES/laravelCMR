@@ -21,6 +21,7 @@ class Base extends Controller {
     protected $vars;
     protected $sidebar;
     protected $locale;
+    protected $service;
 
     public function __construct(){
 
@@ -61,16 +62,27 @@ class Base extends Controller {
                     }
 
                     if($item->parent == 0){
-                        $itemMenu->add($item->title, $path)->id($item->id)->data('permissions', []);
+                        $itemMenu->
+                        add($item->title, $path)->
+                        id($item->id)->
+                        data('permissions', $this->getPermissions($item));
                     }
                     else{
                         if($itemMenu->find($item->parent)){
-                            $itemMenu->find($item->parent)->add($item->title, $path)->id($item->id)->data('permissions', []);
+                            $itemMenu->
+                            find($item->parent)->
+                            add($item->title, $path)->
+                            id($item->id)->
+                            data('permissions', $this->getPermissions($item));
                         }
                     }
             }
         })->filter(function($item){
-            return true;
+
+            if ($this->user && $this->user->userPermissionSet($item->data('permissions'))) {
+                            return true;
+            }
+            return false;
         });
     }
 
@@ -85,5 +97,12 @@ class Base extends Controller {
 
         }
         return false;
+    }
+
+    private function getPermissions($item){
+
+        return $item->perms->map(function ($item) {
+            return $item->alias;
+        })->toArray();
     }
 }
