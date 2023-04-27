@@ -200,6 +200,7 @@ return [
         //Подключение сервиса провайдера
         \App\Services\Localization\LocalizationServiceProvider::class,
         Lavary\Menu\ServiceProvider::class,
+        \Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -217,6 +218,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'menu' => Lavary\Menu\Facade::class,
+        'Excel' => \Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];
