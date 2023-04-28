@@ -4,6 +4,7 @@ namespace App\Modules\Admin\Analitics\Export;
 
 use App\Modules\Admin\Lead\Models\Lead;
 use App\Modules\Admin\Users\Models\User;
+use DateService;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -20,12 +21,12 @@ class LeadsExport implements FromCollection, WithHeadings {
         $this->user = $user;
 
         $this->dateStart = new Carbon('first day of this month');
-        if($dateStart) {
+        if($dateStart && DateService::isValid($dateStart, "d.m.Y")) {
             $this->dateStart = Carbon::parse($dateStart);
         }
 
         $this->dateEnd = new Carbon('last day of this month');
-        if($dateEnd) {
+        if($dateEnd && DateService::isValid($dateEnd, "d.m.Y")) {
             $this->dateEnd = Carbon::parse($dateEnd);
         }
     }

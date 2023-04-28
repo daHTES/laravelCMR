@@ -202,6 +202,8 @@ return [
         Lavary\Menu\ServiceProvider::class,
         \Maatwebsite\Excel\ExcelServiceProvider::class,
 
+        \App\Services\Date\DateCheckServiceProvider::class,
+
     ],
 
     /*
@@ -219,6 +221,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'menu' => Lavary\Menu\Facade::class,
         'Excel' => \Maatwebsite\Excel\Facades\Excel::class,
+        'DateService' => \App\Services\Date\Facade\DateService::class
     ])->toArray(),
 
 ];

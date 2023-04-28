@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\Admin\Sources\Requests;
+namespace App\Modules\Admin\Task\Requests;
 
+use App\Services\Request\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class SourcesRequest extends FormRequest
+class TaskRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,18 +14,19 @@ class SourcesRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->userPermissionSet(['Root_Admin', 'SOURCES_ACCESS']);
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function rules()
     {
         return [
-            'title' => 'required',
+            'text'=>'string|required',
+            'responsible_id'=>'required',
         ];
     }
 }

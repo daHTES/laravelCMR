@@ -11,7 +11,9 @@ use App\Modules\Admin\LeadComment\Policies\LeadCommentPolicy;
 use App\Modules\Admin\Role\Models\Role;
 use App\Modules\Admin\Role\Policies\RolePolicy;
 use App\Modules\Admin\Sources\Models\Source;
-use App\Modules\Admin\Sources\Policies\SourcePolicy;
+use App\Modules\Admin\Task\Models\Task;
+use App\Modules\Admin\TaskComment\Models\TaskComment;
+use App\Modules\Admin\TaskComment\Policies\TaskCommentPolicy;
 use App\Modules\Admin\Users\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -25,9 +27,11 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Role::class => RolePolicy::class,
         User::class => UserPolicy::class,
-        Source::class => SourcePolicy::class,
+        Source::class => Source::class,
         Lead::class => LeadPolicy::class,
         LeadComment::class => LeadCommentPolicy::class,
+        Task::class => TaskCommentPolicy::class,
+        TaskComment::class => TaskCommentPolicy::class
     ];
 
     /**

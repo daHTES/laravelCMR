@@ -12,8 +12,7 @@ class DateCheckServiceProvider extends ServiceProvider{
      */
     public function register(){
 
-
-
+        $this->app->bind('dateCheck', DateCheck::class);
 
     }
 

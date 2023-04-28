@@ -4,6 +4,7 @@ namespace App\Modules\Admin\Users\Models;
 
 use App\Modules\Admin\Lead\Models\Traits\UserLeadsTrait;
 use App\Modules\Admin\Role\Models\Traits\UserRoles;
+use App\Modules\Admin\Task\Models\Traits\UserTasksTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as AuthUser;
@@ -12,7 +13,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends AuthUser
 {
-    use HasFactory, HasApiTokens, UserRoles, UserLeadsTrait;
+    use HasFactory, HasApiTokens, UserRoles, UserLeadsTrait, UserTasksTrait;
 
 
     //Поля которые показываем и выбираем
@@ -28,4 +29,8 @@ class User extends AuthUser
     protected $hidden = [
         'password'
     ];
+
+    public function getFullnameAttribute() {
+        return $this->firtsname.' '.$this->lastname;
+    }
 }

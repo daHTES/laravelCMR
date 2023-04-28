@@ -3,8 +3,8 @@
 namespace App\Modules\Admin\Sources\Controllers\Api;
 
 use App\Modules\Admin\Sources\Models\Source;
-use App\Modules\Admin\Sources\Requests\SourcesRequest;
-use App\Modules\Admin\Sources\Services\SourcesService;
+use App\Modules\Admin\Sources\Requests\TaskCommentRequest;
+use App\Modules\Admin\Sources\Services\TaskService;
 use App\Services\Response\ResponseServices;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,7 +13,7 @@ class SourcesController extends Controller
 {
     private $service;
 
-    public function __construct(SourcesService $sourcesService){
+    public function __construct(TaskService $sourcesService){
 
         $this->service = $sourcesService;
 
@@ -43,7 +43,7 @@ class SourcesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SourcesRequest $request) {
+    public function store(TaskCommentRequest $request) {
 
         $item = $this->service->save($request, new Source());
 
@@ -83,7 +83,7 @@ class SourcesController extends Controller
      * @param  \App\Modules\Admin\Sources\Models\Source  $source
      * @return \Illuminate\Http\Response
      */
-    public function update(SourcesRequest $request, Source $source) {
+    public function update(TaskCommentRequest $request, Source $source) {
 
         $item = $this->service->save($request, $source);
 

@@ -1,9 +1,10 @@
 <?php
 
-Route::group(['prefix' => 'sources', 'middleware' => []], function () {
-    Route::get('/', 'Api\SourcesController@index')->name('api.sources.index');
-    Route::post('/', 'Api\SourcesController@store')->name('api.sources.store');
-    Route::get('/{source}', 'Api\SourcesController@show')->name('api.sources.read');
-    Route::put('/{source}', 'Api\SourcesController@update')->name('api.sources.update');
-    Route::delete('/{source}', 'Api\SourcesController@destroy')->name('api.sources.delete');
+Route::group(['prefix' => 'tasks', 'middleware' => ['auth:api']], function () {
+    Route::get('/', 'Api\TasksController@index')->name('api.tasks.index');
+    Route::post('/', 'Api\TasksController@store')->name('api.tasks.store');
+    Route::get('/{task}', 'Api\TasksController@show')->name('api.tasks.read');
+
+
+    Route::get('/archive/index', 'Api\TasksController@archive')->name('tasks.archive.index');
 });
